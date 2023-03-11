@@ -33,6 +33,7 @@ int main()
 //function Template for C++
 
 //Function to reverse the queue.
+/*
 queue<int> rev(queue<int> q)
 {
     stack<int>st;
@@ -46,5 +47,20 @@ queue<int> rev(queue<int> q)
         q.push(st.top());
         st.pop();
     }
+    return q;
+}
+*/
+void helpfun(queue<int> &q)
+{
+    if(q.empty())
+        return;
+    int x = q.front();
+    q.pop();
+    helpfun(q);
+    q.push(x);
+}
+queue<int> rev(queue<int> q)
+{
+    helpfun(q);
     return q;
 }
