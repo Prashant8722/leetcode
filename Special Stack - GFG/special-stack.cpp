@@ -33,17 +33,11 @@ void push(stack<int>& s, int a){
 }
 
 bool isFull(stack<int>& s,int n){
-	if(s.size()  == n )
-	    return true;
-    else
-        return false;
+	return (s.size()  == n );
 }
 
 bool isEmpty(stack<int>& s){
-	if(s.size() == 0)
-	    return true;
-    else
-        return false;
+	return (s.size() == 0);
 }
 
 int pop(stack<int>& s){
