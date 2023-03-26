@@ -109,11 +109,11 @@ int main() {
 
 
 // Function to delete a node from BST.
-Node * getSuccessor(Node *curr)
+Node * getPredessor(Node *curr)
 {
-    curr = curr->right;
-    while(curr != NULL && curr->left != NULL)
-        curr = curr -> left;
+    curr = curr->left;
+    while(curr != NULL && curr->right != NULL)
+        curr = curr -> right;
     return curr;
 }
 Node *deleteNode(Node *root, int x) {
@@ -138,9 +138,9 @@ Node *deleteNode(Node *root, int x) {
             }
             else
             {
-                Node *succ = getSuccessor(root);
-                root->data  = succ->data;
-                root -> right  = deleteNode(root->right,succ->data);
+                Node *pred = getPredessor(root);
+                root->data  = pred->data;
+                root -> left  = deleteNode(root->left,pred->data);
             }
         }
         return root;
