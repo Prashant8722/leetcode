@@ -99,28 +99,22 @@ class Solution{
   public:
     // root : the root Node of the given BST
     // target : the target sum
-    vector<int>v;
-    void inorder(struct Node *root)
+    unordered_set<int>s;
+    bool isPresent(struct Node * root , int target , unordered_set<int> &s)
     {
-        if(root== NULL) return;
-        else{
-        inorder(root ->left);
-        v.push_back(root->data);
-        inorder(root->right);
-    
-    }
+        if(root == NULL) return false;
+        if(isPresent(root->left , target , s) == true)    return true;
+        if(s.find(target - root->data) != s.end())
+            return true;
+        else
+        {
+            s.insert(root->data);
         }
+        return isPresent(root->right , target , s);
+    }
     int isPairPresent(struct Node *root, int target)
     {
-        inorder(root);
-         for(int i = 0 , j = v.size()- 1 ; i < j ; )
-            {
-                if((v[i] + v[j]) == target)   return 1;
-                else if((v[i] + v[j]) >  target) j--;
-                else
-                    i++;
-            }
-            return 0;
+       return isPresent(root,target,s) == false ? 0 :1 ; 
     }
 };
 
