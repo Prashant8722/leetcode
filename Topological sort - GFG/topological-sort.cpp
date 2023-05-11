@@ -8,7 +8,7 @@ class Solution
 	public:
 	//Function to return list containing vertices in Topological order. 
 	
-	void DFSRecursive(int source , stack<int>&st , vector<int>adj[] , vector<bool>&visited)
+	void DFSRecursive(int source , vector<int>&st , vector<int>adj[] , vector<bool>&visited)
 	{
 	   visited[source] = true;
 	   vector<int>data = adj[source];
@@ -18,7 +18,7 @@ class Solution
 	        DFSRecursive(v , st , adj , visited);
 	    }
 	   }
-	   st.push(source);
+	   st.push_back(source);
 	}
 	
 	
@@ -27,20 +27,15 @@ class Solution
 	    // code here
 	   // using DFS before that using BFS
 	   vector<bool>visited(v , false);
-	   stack<int> st;
+	   vector<int> st;
 	   
 	   for(int i = 0; i < v ; i++)
 	   {
 	       if(!visited[i])
 	            DFSRecursive(i , st , adj , visited);
 	   }
-	   vector<int>ans;
-	   for(int i = 0 ; i < v ; i++){
-	        int x = st.top();
-	        st.pop();
-	        ans.push_back(x);
-	}
-	return ans;
+	   reverse(st.begin() , st.end());
+	   return st;
 	}
 };
 
