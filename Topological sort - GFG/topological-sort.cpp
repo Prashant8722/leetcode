@@ -7,42 +7,40 @@ class Solution
 {
 	public:
 	//Function to return list containing vertices in Topological order. 
+	
+	void DFSRecursive(int source , stack<int>&st , vector<int>adj[] , vector<bool>&visited)
+	{
+	   visited[source] = true;
+	   vector<int>data = adj[source];
+	   for(auto v : data){
+	   if(!visited[v])
+	    {
+	        DFSRecursive(v , st , adj , visited);
+	    }
+	   }
+	   st.push(source);
+	}
+	
+	
 	vector<int> topoSort(int v, vector<int> adj[]) 
 	{
-	    vector<int> ans;    //resultant topological sort will be stored.
-	    queue<int>q;        //queue in which 0 degree vertices will be pushed 
-	    
-	    vector<int>indegree(v,0);
-	    //Adding indegree of every vertices;
-	    for(int i =0; i < v; i++)
-	    {
-	        vector<int>data = adj[i];
-	        for(auto x : data)
-	            {
-	                indegree[x]++;
-	            }
-	    }
-	    //check which indegree is zero initially and pushed into queue
-	    for(int i =0; i < v; i++)
-	    {
-	        if(indegree[i] == 0)
-	            q.push(i);
-	    }
-	   // just like bfs 
-	    while(!q.empty())
-	    {
-	        int u = q.front();
-	        q.pop();
-	        ans.push_back(u);
-	
-	        for(auto v : adj[u])
-	        {           //adjacent of vertices u will be reduced and checked if indegree of v
-	            indegree[v]--;               
-                if(indegree[v] == 0)        // is 0 then pushed into queue
-                    q.push(v);
-	        }
-	    }
-	    return ans;
+	    // code here
+	   // using DFS before that using BFS
+	   vector<bool>visited(v , false);
+	   stack<int> st;
+	   
+	   for(int i = 0; i < v ; i++)
+	   {
+	       if(!visited[i])
+	            DFSRecursive(i , st , adj , visited);
+	   }
+	   vector<int>ans;
+	   for(int i = 0 ; i < v ; i++){
+	        int x = st.top();
+	        st.pop();
+	        ans.push_back(x);
+	}
+	return ans;
 	}
 };
 
