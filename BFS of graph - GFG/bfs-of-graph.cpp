@@ -29,8 +29,8 @@ class Solution {
   }
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int v, vector<int> adj[]) {
-        bool visited[v+1];
-        for(int i = 0 ; i <= v ; i++ )
+        bool visited[v];
+        for(int i = 0 ; i < v ; i++ )
         {
             visited[i] = false;
         }
