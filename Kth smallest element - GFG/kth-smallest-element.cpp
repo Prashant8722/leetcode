@@ -13,21 +13,32 @@ class Solution{
     // l : starting index of the array i.e 0
     // r : ending index of the array i.e size-1
     // k : find kth smallest element and return using this function
+    
     int kthSmallest(int arr[], int l, int r, int k) {
-        priority_queue<int , vector<int> , greater<int>>pq;
-         for(int i = 0 ; i <=r ; i++)
+        priority_queue<int , vector<int>>pq; // max-heap
+         for(int i = 0 ; i < k ; i++)
         {
             pq.push(arr[i]);
         }
-    
-        int res;
-        while(k-- > 0 )
+         for(int i = k ; i <= r   ; i++)
         {
-            res = pq.top();
-            pq.pop();
+          int x = pq.top();
+          if(x > arr[i])
+          {
+              pq.pop();
+              pq.push(arr[i]);
+          }
         }
-        return res;
+        int x = pq.top();
+        //printing first 3 smallest element
+        // for(int i = 0 ; i < k ; i++)
+        // {
+        //     x = pq.top();
+        //     pq.pop();
+        //     cout<< x <<" ";
+        // }
         
+        return x;
     }
 };
 
