@@ -26,7 +26,7 @@ class Solution{
                 
            if(m.find(arr[i]) == m.end())         //if current window last ele not exists then put in map and inc freq)
            {
-               m.insert({arr[i] , 1});
+               m.insert({arr[i] , m[arr[i]]++});
            }
           else        // curr ele already exists the inc its freq 
           {
