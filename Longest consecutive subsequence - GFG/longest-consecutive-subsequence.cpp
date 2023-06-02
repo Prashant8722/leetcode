@@ -7,32 +7,32 @@ using namespace std;
 class Solution{
   public:
     // arr[] : the input array
-    // N : size of the array arr[]
+    // n : size of the array arr[]
     
     //Function to return length of longest subsequence of consecutive integers.
     int findLongestConseqSubseq(int arr[], int n)
     {
-      //time complexity ===> O(nlong(n))
-      sort(arr , arr +n);
-      int curr = 1 , res = 1;
-      for(int i = 1; i < n ; i++)
+      //Your code here
+      unordered_set<int>s;
+      int curr=0 , res = 0 ;
+      for(int i = 0 ; i < n ; i++)
       {
-           if(arr[i-1] == arr[i]){     // ignore duplicate element
-               continue;
-           }
-           
-          if(arr[i] == arr[i-1] + 1)
-          {
-              curr++;
-          }
-          else
-          {
-              res = max(res, curr);
-              curr=1;
-          }
+          s.insert(arr[i]);
       }
-      res =   max(res , curr);
-      return res;
+      for(int i = 0 ; i < n ; i++)
+         { 
+            if(s.find(arr[i] - 1) == s.end() )
+             {
+               curr =1;
+               while(s.find(arr[i] + curr) != s.end())
+               {
+                   curr++;
+               }
+             }
+          res= max(res , curr);
+          curr = 0;
+         }
+         return res;
     }
 };
 
