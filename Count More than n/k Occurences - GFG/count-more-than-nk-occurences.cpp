@@ -14,14 +14,14 @@ class Solution
         unordered_map<int , int>m;
         int count = 0;
         int res = 0;
-        int div = ceil(n/k) + 1;
+        int div = ceil(n/k);
         for(int i = 0 ; i < n ;i++)
         {
             m.insert({arr[i] , m[arr[i]]++});
         }
         for(auto it = m.begin() ; it != m.end() ; it++)
         {
-            if(it->second >= div)
+            if(it->second > div)
                 res++;
         }
         return res;
