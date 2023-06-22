@@ -24,7 +24,7 @@ public:
             minimum = min(minimum , arr[mid]);
             //if array is rotated then first element is always less than the before first minimum element
             //search in right part of mid
-            if(arr[mid]>= arr[0])
+            if(arr[mid]>= arr[l])
                 {
                     l= mid +1;
                 }
