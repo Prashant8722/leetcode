@@ -13,19 +13,19 @@ class Solution
         vector<vector<int>> mat(n, vector<int>(n));
         for(int i = 0 ; i < n ; i++ )
             {
-                for(int j = 0 ; j < n; j++)
+                for(int j = i+1 ; j < n; j++)
                     {
-                        mat[n-j-1][i] = matrix[i][j];
+                        swap(matrix[i][j],matrix[j][i]);
                     }
             }
-            for(int i = 0 ; i < n ; i++ )
+        for(int i = 0 ; i < n ; i++ )
             {
-                for(int j = 0 ; j < n; j++)
-                    {
-                        matrix[i][j] = mat[i][j];
-                    }
+                int high = n - 1;
+                int low = 0;
+                while(low < high)
+                    swap(matrix[low++][i] , matrix[high--][i]);
             }
-        return;
+            return;
     } 
 };
 
