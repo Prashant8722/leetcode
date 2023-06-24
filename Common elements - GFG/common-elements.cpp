@@ -9,21 +9,36 @@ class Solution
     public:    
        vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
         {
+            //code here.
             vector<int>res;
-            set<int> s1 , s2, s3;
-            for(int i = 0 ; i < n1 ; i++)
-                s1.insert(A[i]);
-            for(int i = 0 ; i < n2 ; i++)
-                s2.insert(B[i]);
-            for(int i = 0 ; i < n3 ; i++)
-                s3.insert(C[i]);
-             for(int i = 0 ; i < n1 ; i++)   
-                if((s2.find(A[i]) != s2.end()) && (s3.find(A[i]) != s3.end())){
-                    s1.erase(A[i]); s3.erase(A[i]); s2.erase(A[i]);
+            //Initialize three pointers, one for each array: i for array A, j for array B, and k for array C
+            int i = 0 , j = 0 , k = 0;
+            int prev_ele = INT_MIN;
+            while(i < n1 && j < n2 && k < n3)
+            {
+                //If all three elements are equal, we have found a common element.store the element.
+                if(A[i] == B[j] && B[j] == C[k]){
+                    if(A[i] != prev_ele){
                     res.push_back(A[i]);
+                    prev_ele = A[i];
+                    }
+                    i += 1;
+                    j += 1;
+                    k += 1;
                 }
-        return res;    
+                //If the element at A[i] is smaller than either B[j] or C[k], move the pointer i to the next element in array A.
+                else if(A[i] < B[j] || A[i] < C[k])
+                    i++;
+                // If the element at B[j] is smaller than either A[i] or C[k], move the pointer j to the next element in array B.
+                else if(B[j] < A[i] || B[j] < C[k])
+                    j++;
+                // If the element at C[k] is smaller than either A[i] or B[j], move the pointer k to the next element in array C.
+                else
+                    k++;
+            }
+            return res;
         }
+
 };
 
 //{ Driver Code Starts.
