@@ -29,8 +29,8 @@ Compare the current character at index i with the expected character. If they ar
     int flips1 = 0;
     int flips2 = 0;
     for (int i = 0; i < s.length(); i++) {
-        char expectedChar = (i % 2 == 0) ? '1' : '0';
-        if (s[i] == expectedChar) {
+        char expectedChar = (i % 2 == 0) ? '0' : '1';
+        if (s[i] != expectedChar) {
             flips1++;
         } else {
             flips2++;
