@@ -37,10 +37,10 @@ class Solution
     public:
     struct Node* makeUnion(struct Node* head1, struct Node* head2)
     {
-        // typedef struct Node node;
+        typedef struct Node* node; // previous submission it is not used 
         set<int>s;
-        struct Node* h1 =head1;
-        struct Node* h2 =head2;
+        node h1 =head1;
+        node h2 =head2;
         while(h1 != NULL || h2 != NULL){
             if(h1 != NULL){
                 s.insert(h1->data);
@@ -53,15 +53,15 @@ class Solution
             }
         }
         // sort(s.begin() , s.end());
-        struct Node* head = NULL;
-        struct Node* curr = NULL;
+        node head = NULL;
+        node curr = NULL;
         
         auto it = s.begin();
         
         while(it != s.end())
         {
             
-            struct Node* create = new Node(*it);
+            node create = new Node(*it);
             
             if(head == NULL){
                 head = create;
@@ -71,7 +71,7 @@ class Solution
                 curr->next = create;
                 curr = curr->next;
             }
-            // create->next = NULL;
+            create->next = NULL; // previous submission it is not used
             it++;
         }
         return head;
