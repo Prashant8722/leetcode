@@ -64,10 +64,10 @@ class Solution
     struct Node* reverse(struct Node* h1){
       struct Node* curr = h1;
       struct Node* prev = NULL;
-      struct Node* next = NULL;
+
       
       while(curr != NULL){
-          next = curr->next;
+          struct Node* next = curr->next;
           curr->next = prev;
           prev = curr;
           curr = next;
@@ -86,56 +86,30 @@ class Solution
      struct Node* head = NULL;
      struct Node* rear = NULL;
      
-     while(h1 != NULL && h2 != NULL){
-        int sum = (carry + h1->data + h2->data);
-        if(sum >= 10 )
-            carry = 1;
-        else 
-            carry = 0;
-        struct Node* h = new Node(sum % 10);
-         if(head == NULL) {
-           head = h;
-           rear = h;
+     while(h1 != NULL || h2 != NULL || carry != 0){
+        int sum = carry;
+
+         if( h1 != NULL){
+          sum+=h1->data;
+          h1 = h1->next;
          }
-         else{
-             rear->next = h;
-             rear = rear -> next;
+         
+         if( h2 != NULL){
+          sum+=h2->data;
+          h2 = h2->next;
          }
-         h1 = h1->next;
-         h2= h2->next;
+         
+      carry = sum / 10;
+       struct Node* newNode = new Node(sum % 10);
+       
+      if (head == NULL) {
+            head = newNode;
+            rear = newNode;
+        } else {
+            rear->next = newNode;
+            rear = newNode;
+        }
      }
-        if( h1 != NULL){
-            while(h1 != NULL){
-                int sum = (carry + h1->data);
-                    if(sum >= 10 )
-                        carry = 1;
-                    else
-                        carry = 0;
-                 struct Node* h = new Node(sum % 10);
-                 rear->next = h;
-                 rear = rear->next;
-                 h1 = h1->next;
-          
-        }
-        }
-        if( h2 != NULL){
-           while(h2 != NULL){
-                int sum = (carry + h2->data);
-                    if(sum >= 10 )
-                        carry = 1;
-                    else
-                        carry = 0;
-                 struct Node* h = new Node(sum % 10);
-                 rear->next = h;
-                 rear = rear->next;
-                 h2 = h2->next; 
-        }
-        }
-        if(carry == 1){
-          struct Node* h = new Node(1);
-                 rear->next = h;
-                 rear = rear->next;
-        }
        return reverse(head);
     }
 };
