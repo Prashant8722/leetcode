@@ -94,6 +94,7 @@ class Solution{
     /*You are required to complete this method*/
     int maxDepth(Node *root) {
         if(root == NULL) return 0 ;
+        if(root->left  == NULL && root->right == NULL) return 1;
         return 1 + max(maxDepth(root->left) , maxDepth(root->right));
     } 
 };
