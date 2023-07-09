@@ -8,19 +8,18 @@ class Solution{
     public:
     
     //Function to rotate an array by d elements in counter-clockwise direction. 
+    void helper(int arr[] , int start , int end){
+        while(start <= end){
+            swap(arr[start++] , arr[end--]);
+        }
+    }
     void rotateArr(int arr[], int d, int n){
         d = d % n;
-        int arrt[d];
-        for(int i = 0 ; i < d ; i++){
-            arrt[i] = arr[i];
-        }
-            for(int j = d ; j < n ; j++){
-                arr[j-d] = arr[j];
-            }
-            int k = 0;
-        for(int i = n-d ;i <= n ; ++i ){
-            arr[i] = arrt[k++];   
-        }
+        
+        helper(arr , 0 , d-1);
+         helper(arr , d , n-1);
+          helper(arr , 0 , n-1);
+         
         return;
     }
 };
