@@ -8,26 +8,30 @@ class Solution
 {
     public:
     //Function to find all possible unique subsets.
-    vector<vector<int>>res;
-    set<vector<int>>temp;
-    vector<vector<int> > AllSubsets(vector<int> arr, int n)
-    {
-       for(int i = 0 ; i < (1 << n) ; i++){  //2^n == 1<<n
-            vector<int>v;
-            for(int j = 0 ; j < n ; j++){
-                if((1<<j) & i){
-                    v.push_back(arr[j]);
-                }
-            }
-            sort(v.begin() , v.end());
-            temp.insert(v);
-            
-       }
-       for(auto st : temp){
-               res.push_back(st);
-            }
-       return res;
+    vector<vector<int>> res;
+
+void generateSubsets(vector<int>& arr, int index, vector<int>& current) {
+    res.push_back(current);
+
+    for (int i = index; i < arr.size(); i++) {
+        if (i > index && arr[i] == arr[i - 1]) {
+            continue; // Skip duplicate elements
+        }
+        current.push_back(arr[i]);
+        generateSubsets(arr, i + 1, current);
+        current.pop_back();
     }
+}
+
+vector<vector<int>> AllSubsets(vector<int> arr, int n) {
+    sort(arr.begin(), arr.end()); // Sort the array
+
+    vector<int> current;
+    generateSubsets(arr, 0, current);
+
+    return res;
+}
+
 };
 
 //{ Driver Code Starts.
