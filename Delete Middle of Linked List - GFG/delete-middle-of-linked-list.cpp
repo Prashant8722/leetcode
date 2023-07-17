@@ -86,9 +86,9 @@ Node* deleteMid(Node* head)
         slow = slow->next;
         fast = fast->next->next;
     }
-    Node *deleteNode = slow->next;
+    // Node *deleteNode = slow->next;
     slow->next = slow->next->next;
-     deleteNode->next = nullptr;
-    delete(deleteNode);
+    //  deleteNode->next = nullptr;
+    // delete(deleteNode);
     return head;
 }
