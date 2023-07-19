@@ -22,11 +22,8 @@ int countRev (string s)
    int left_bracket = 0;
    int right_bracket = 0;
    if( s.size() % 2 != 0) return -1;
-  for (int i = 0; i < s.length(); i++) {
- 
-        // If we find a left bracket then we simply
-        // increment the left bracket
-        if (s[i] == '{') {
+  for(char c : s){
+            if(c == '{'){
             left_bracket++;
        }
         else {
