@@ -13,7 +13,7 @@ class Solution
     { 
         string result = "";
         string curr_word = "";
-        vector<string> words;
+        stack<string> words;
     
         //initially reversing individual words of the given string one by one.
         for (char c : s)
@@ -21,7 +21,7 @@ class Solution
             //if '.' is encountered, we store the word in list.
             if(c == '.')
             {
-                words.push_back(curr_word);
+                words.push(curr_word);
                 curr_word = "";
             }
             //else adding the characters in current word in such
@@ -30,13 +30,14 @@ class Solution
                 curr_word += c;
         }
         //storing the last remaining word in list.
-        words.push_back(curr_word);
+        words.push(curr_word);
         
         //now reversing the whole modified string by adding all 
         //the elements of list in a single string in reverse order.
         for (int i = words.size()-1; i>=0; --i)
         {
-            result += words[i];
+            result += words.top();
+            words.pop();
             if(i!=0)
                 result += '.';
         }
