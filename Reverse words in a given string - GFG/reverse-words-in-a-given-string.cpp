@@ -34,11 +34,12 @@ class Solution
         
         //now reversing the whole modified string by adding all 
         //the elements of list in a single string in reverse order.
-        for (int i = words.size()-1; i>=0; --i)
+        int n = words.size();
+        for (int i = 0; i<=n-1; ++i)
         {
             result += words.top();
             words.pop();
-            if(i!=0)
+            if(i!=n-1)
                 result += '.';
         }
         //returning the result.
