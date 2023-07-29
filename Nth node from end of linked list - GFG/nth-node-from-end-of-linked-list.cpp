@@ -48,7 +48,6 @@ public:
                  if(first == nullptr) return -1;
                 first = first -> next;
            }
-           Node * prev = nullptr;
            Node * second = head;
             while(first != nullptr){
                     first = first -> next;
