@@ -46,40 +46,31 @@ struct Node
 class Solution
 {
     public:
-    /*
-    Node *compute(Node *head)
-    {
-        if(head->next == nullptr) return head;
-        Node *bkd = nullptr;
-        Node *curr= head;
-        Node *fwd = head->next;
-        
-        while(fwd != nullptr){
-        if(head == curr && head->data < fwd->data){
-                head = head->next;
-                curr->next = nullptr;
-                delete(curr);
-                curr = fwd;
-                
-                // fwd = fwd->next;
-            }
-        else if(curr->data < fwd ->data){
-            
-            bkd->next = curr->next;
-            curr->next = nullptr;
-            delete(curr);
-            curr = fwd;
-            // fwd = fwd -> next;
-        }
-        else{
-                bkd = curr;
-                curr = curr->next;
-                // fwd = fwd ->next;
-            }
-               fwd = fwd ->next;
-        }
-        return head;
-    }
+/*    
+Here's the algorithm for the provided code to remove all the nodes from the singly linked list that have a greater value on their right side:
+
+Algorithm:
+
+1. Create a helper function `reverse` to reverse the linked list. This function takes the head of the list as input and returns the new head of the reversed list.
+
+2. Check if the input `head` is null or the list contains only one node (`head->next == nullptr`). If either of these conditions is true, return the `head` as there is nothing to remove.
+
+3. Reverse the linked list using the `reverse` function to make it easier to process nodes from right to left.
+
+4. Initialize three pointers: `maxNode`, `curr`, and `prev` as follows:
+   - Set `maxNode = head`, pointing to the first node of the reversed list.
+   - Set `curr = head->next`, pointing to the second node of the reversed list.
+   - Set `prev = head`, pointing to the first node of the reversed list.
+
+5. Traverse the reversed list using `curr` and `prev` pointers until `curr` becomes null:
+   - If the `data` of `curr` is greater than or equal to the `data` of `maxNode`, update `maxNode = curr` and move both `curr` and `prev` to their next nodes.
+   - If the `data` of `curr` is less than the `data` of `maxNode`, it means that the current node has a greater value on its right side. In this case, remove the current node by updating `prev->next = curr->next` and delete `curr`. Then, move `curr` to the next node without moving `prev`.
+
+6. After the traversal is complete, the modified list contains only the nodes that do not have a greater value on their right side. Reverse the list back to its original order using the `reverse` function.
+
+7. Return the head of the modified list.
+
+This algorithm ensures that the input linked list is modified such that all nodes with a greater value on their right side are removed, and the relative order of the remaining nodes is maintained.
    */ 
    Node* reverse(Node* head) {
     Node* prev = nullptr;
