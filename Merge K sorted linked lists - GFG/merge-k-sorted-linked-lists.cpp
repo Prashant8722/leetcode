@@ -46,32 +46,53 @@ struct Node
 class Solution{
   public:
     //Function to merge K sorted linked list.
-    Node * mergeKLists(Node *arr[], int k)
+    Node * merge(Node *a , Node *b){
+        Node *temp = nullptr;
+        Node *dummy= new Node(-1);
+        Node * tail = dummy;
+        
+        while(a != nullptr and b != nullptr){
+            if(a -> data < b->data ){
+                temp = a;
+                a = a->next;
+            }
+            else{
+                temp = b;
+                b = b->next;
+            }
+            tail->next = temp;
+            temp->next = nullptr;
+            tail = tail->next;
+        }
+        if(a == nullptr){
+            tail->next = b;
+        }
+        if(b == nullptr){
+            tail->next = a;
+        }
+        Node *res = dummy->next;
+        
+        delete dummy;
+        return res;
+    }
+    Node * mergeKLists(Node *arr[], int K)
     {
-           // Your code here
-            vector<int>vec;
-            int i = 0;
-            while(k-- > 0){
-                Node * head = arr[i++];
-                while(head != nullptr){
-                    vec.push_back(head->data);
-                    head = head->next;
-                }
-            }
-            sort(vec.begin() , vec.end());
-            // for(auto x : vec){
-            //   cout<<x<<" "; 
-            // }
-            int vecSize = vec.size();
-            Node *head = new Node(vec[0]);
-            Node *tail = head;
-            i = 1;
-            while(vecSize-- > 1){
-              tail->next = new Node(vec[i++]);
-                tail = tail->next;
-                
-            }
-            return head;
+          int i =0;
+          int last =K - 1;
+          int j;
+          while( last > 0 ){
+              i = 0; 
+              j = last;
+              while(i < j){
+                  arr[i] = merge(arr[i] , arr[j]);
+                  i++;j--;
+                  if(i >= j){
+                      last = j;
+                  }
+              }
+              
+          }
+          return arr[0];
     }
 };
 
