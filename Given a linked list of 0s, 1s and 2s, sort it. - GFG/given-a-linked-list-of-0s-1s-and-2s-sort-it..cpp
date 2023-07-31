@@ -33,41 +33,59 @@ class Solution
 {
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
+    void linkage(Node * &tail , Node * curr){
+        tail->next = curr;
+        tail = curr;
+    }
     Node* segregate(Node *head) {
-      Node *dummy0 = new Node(0) , *next0=dummy0;
-      
-      Node *dummy1 = new Node(1), *next1 = dummy1;
-      
-      Node * dummy2 = new Node(2), *next2 = dummy2;
-      
-      Node * curr = head;
-      while(curr != nullptr){
-           Node* prev = curr;
-          if(curr -> data == 0){
-              next0 ->next  = curr;
-              next0 = next0->next;
-              
-          }
-          if(curr -> data == 1){
-              next1 ->next  = curr;
-              next1 = next1->next;
-              
-          }
-          if(curr -> data == 2){
-              next2 ->next  = curr;
-              next2 = next2->next;
-          }
-             curr = curr->next;
-          prev -> next = nullptr;
-      }
-      next0->next = dummy1->next ? dummy1->next : dummy2->next;
-      next1->next = dummy2->next;
-      
-     delete dummy1;
-     delete dummy2;
-     curr = dummy0 -> next;
-     delete dummy0;
-      return curr;
+        Node* dummy0 = new Node(-1);
+        Node* next0=dummy0;
+        
+        Node* dummy1 = new Node(-1);
+        Node* next1 = dummy1;
+        
+        Node* dummy2 = new Node(-1);
+        Node* next2 = dummy2;
+        
+        Node * curr = head;
+        
+        while(curr != nullptr){
+            int val = curr->data;
+            
+            if(val == 0){
+                linkage(next0 , curr);
+                }
+            else if(val == 1){
+                linkage(next1 , curr);
+                }
+            else if(val == 2){
+                linkage(next2 , curr);
+                }
+            curr = curr->next;
+        }
+      //merge 3 sublist
+    
+    // 1s list not empty
+    if(dummy1 -> next != NULL) {
+        next0 -> next = dummy1 -> next;
+    }
+    else {
+        //1s list -> empty
+        next0-> next = dummy2 -> next;
+    }
+    
+    next1 -> next = dummy2 -> next;
+    next2 -> next = NULL;
+    
+	//setup head 
+    head = dummy0 -> next;
+    
+    //delete dummy nodes
+    delete dummy0;
+    delete dummy1;
+    delete dummy2;
+    
+    return head;
     }
 };
 
