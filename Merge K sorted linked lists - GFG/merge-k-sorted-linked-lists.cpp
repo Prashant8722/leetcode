@@ -77,7 +77,7 @@ class Solution{
     }
     Node * mergeKLists(Node *arr[], int K)
     {
-          int i =0;
+          int i;
           int last =K - 1;
           int j;
           while( last > 0 ){
