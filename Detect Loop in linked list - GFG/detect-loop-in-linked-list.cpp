@@ -48,7 +48,7 @@ class Solution
     //Function to check if the linked list has a loop.
     bool detectLoop(Node* head)
     {
-       if(head->next == head) return true;
+    //   if(head->next == head) return true;
        Node *fast = head->next;
        Node *slow = head;
        while(fast != nullptr){
@@ -64,6 +64,7 @@ class Solution
        return false;
     }
 };
+
 
 
 //{ Driver Code Starts.
