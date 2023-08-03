@@ -75,11 +75,11 @@ bool isCircular(Node *head)
 {
    // Your code here
    Node *curr = head;
-   while(curr -> next != head and curr -> next != nullptr){
+   while(curr -> next != nullptr){
+       if(curr -> next == head)
+            return 1;
        curr = curr->next;
    }
-   if(curr ->next == head)
-        return 1;
     return 0;
    
 }
