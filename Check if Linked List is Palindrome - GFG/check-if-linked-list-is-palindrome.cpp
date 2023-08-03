@@ -33,14 +33,14 @@ class Solution{
   public:
     //Function to check whether the list is palindrome.
     
-    long long reverse(int num){
-        long long sum = 0;
+    long long reverse(long long num){
+        long long total = 0;
         while(num > 0 ){
             int rem = num % 10;
-            sum = sum * 10 + rem;
+            total = total * 10 + rem;
             num = num / 10;
         }
-        return sum;
+        return total;
     }
     bool isPalindrome(Node *head)
     {
