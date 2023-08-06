@@ -102,47 +102,34 @@ struct Node
 
 void splitList(Node *head, Node **head1_ref, Node **head2_ref)
 {
-   if (head == nullptr) {
-        return;
-    }
-
-    Node* slow = head;
-    Node* fast = head->next;
-
-    while (fast != head && fast->next != head) {
+    if(!head) return;
+    
+    Node* slow  = head;
+    Node* fast = head ->next;
+    
+    while(fast != head and fast ->next != head ){
         slow = slow->next;
         fast = fast->next->next;
     }
-
-    if (fast == head) {
-        // Odd number of nodes
-        Node* h2 = slow->next;
-        slow->next = head;
-        Node* prev = h2;
-        while (prev->next != head)
-            prev = prev->next;
-        prev->next = h2;
-
-        *head1_ref = head;
-        *head2_ref = h2;
-    } else {
-        // Even number of nodes
-        Node* h2 = slow->next;
-        slow->next = head;
-        fast->next = h2;
-
+    //odd number of nodes
+    if(fast == head){
+        Node* h2 = slow -> next;
+        slow -> next =head;
+        Node * prev = h2;
+        while(prev->next != head)
+            prev = prev ->next;
+        prev ->next = h2;
+        
         *head1_ref = head;
         *head2_ref = h2;
     }
-        /*
-        while(*head1_ref != nullptr){
-            printf("%d \t",**(head1_ref).data);
-            *(head1_ref) = **(head1_ref).next;
+    ////for even number of nodes
+    else{
+            Node * h2 = slow -> next;
+            slow -> next = head;
+            fast ->next = h2;
+            
+            *head1_ref = head;
+            *head2_ref = h2;
         }
-        // cout<<endl;
-         while(*head2_ref != nullptr){
-            printf("%d \t",**(head2_ref).data);
-            *(head2_ref) = **(head2_ref).next;
-        }
-        */
 }
