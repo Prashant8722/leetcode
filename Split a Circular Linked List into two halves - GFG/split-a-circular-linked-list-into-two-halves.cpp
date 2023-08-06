@@ -112,24 +112,29 @@ void splitList(Node *head, Node **head1_ref, Node **head2_ref)
         fast = fast->next->next;
     }
     //odd number of nodes
-    if(fast == head){
-        Node* h2 = slow -> next;
+    Node* h2 = slow -> next;
         slow -> next =head;
+    if(fast == head){
+        // Node* h2 = slow -> next;
+        // slow -> next =head;
+        
         Node * prev = h2;
         while(prev->next != head)
             prev = prev ->next;
         prev ->next = h2;
         
-        *head1_ref = head;
-        *head2_ref = h2;
+        // *head1_ref = head;
+        // *head2_ref = h2;
     }
     ////for even number of nodes
     else{
-            Node * h2 = slow -> next;
-            slow -> next = head;
+            // Node * h2 = slow -> next;
+            // slow -> next = head;
             fast ->next = h2;
             
-            *head1_ref = head;
-            *head2_ref = h2;
+            // *head1_ref = head;
+            // *head2_ref = h2;
         }
+         *head1_ref = head;
+         *head2_ref = h2;
 }
