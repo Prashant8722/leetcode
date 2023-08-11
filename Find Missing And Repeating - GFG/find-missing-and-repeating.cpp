@@ -7,28 +7,21 @@ using namespace std;
 class Solution{
 public:
     vector<int> findTwoElement(vector<int> arr, int n) {
-    int sum = 0;
-    int s[n+1];
-    for(int i = 0 ; i <= n ; i++){
-        s[i] = 0;
-    }
-    vector<int>v;
-
-    for(int i = 0 ; i < n ; i++){
-        s[arr[i]]++;
-    }
-    
-    int miss;
-    
-    for(int i = 1 ; i <= n ; i++ ){
-        if(s[i] == 2){
-            v.push_back(i);         
+        vector<int>v;
+     for (int i = 0; i < n; ) {
+        if (arr[i] != arr[arr[i] - 1]) {
+            swap(arr[i], arr[arr[i] - 1]);
+        } else {
+            i++;
         }
-        if(s[i] == 0)
-            miss = i;
     }
-    
-    v.push_back(miss);
+     for (int i = 0; i < n; i++) {
+        if (arr[i] != i + 1) {
+            v.push_back(arr[i]);
+            v.push_back(i + 1);
+            break;
+        }
+    }
     return v;
     }
 };
