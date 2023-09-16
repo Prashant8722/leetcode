@@ -19,15 +19,19 @@ public:
 	    int oddCount = 0;
 	    
 	    int len = s.length();
+	    //Traverse the binary number from the most significant bit
 	    for(int i = len - 1 ; i >= 0 ; i--){
+	       // If the current bit is set
 	        if(s[i] == '1'){
+	           // # If the current bit's position is even, increment the even counter
 	            if(i % 2 == 0 )
 	                evenCount += 1;
                 else{
-                    oddCount += 1;
+                    oddCount += 1; // If the current bit's position is odd, increment the odd counterIf the current bit's position is odd, increment the odd counter
                 }
 	        }
 	    }
+	   // If the difference between the count of odd set bits and even set bits is a multiple of 3
 	    int res = abs(evenCount - oddCount);
 	    return res % 3 == 0 ?  1 : 0;
 	}
